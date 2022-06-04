@@ -21,7 +21,7 @@ public class Room {
 
         for(int y=0; y<block.length; y++){
             for(int x=0; x<block[0].length; x++){
-                block[y][x]=new Block(((x)*blockSize), y*blockSize, blockSize, blockSize, Value.groundGrass, Value.airAir);
+                block[y][x]=new Block(((x)*blockSize) + 40, y*blockSize, blockSize, blockSize, Value.groundGrass, Value.airAir);
             }
         }
     }
@@ -31,9 +31,9 @@ public class Room {
     }
 
     public void draw(Graphics g){
-        for(int y=0; y<block.length; y++){
-            for(int x=0; x<block[0].length; x++){
-                block[y][x].draw(g);
+        for (Block[] blocks : block) {
+            for (int x = 0; x < block[0].length; x++) {
+                blocks[x].draw(g);
             }
         }
     }

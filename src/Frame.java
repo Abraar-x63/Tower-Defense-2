@@ -7,8 +7,8 @@ import java.awt.*;
  */
 public class Frame extends JFrame{
 
-    public static String title = "Tower Bacon Alpha ";
-    public static Dimension size = new Dimension(650, 550);
+    public static String title = "TD by The Sentinels";
+    public static Dimension size = new Dimension(725, 550);
 
     public Frame(){
         setTitle(title);
