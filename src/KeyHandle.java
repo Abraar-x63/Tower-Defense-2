@@ -1,9 +1,6 @@
 import java.awt.event.*;
 import java.awt.*;
-/**
- *
- * @author hewhofades
- */
+
 public class KeyHandle implements MouseMotionListener, MouseListener{
 
     @Override

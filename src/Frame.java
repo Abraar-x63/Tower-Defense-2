@@ -1,10 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 
-/**
- *
- * @author hewhofades
- */
 public class Frame extends JFrame{
 
     public static String title = "TD by The Sentinels";

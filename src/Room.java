@@ -1,9 +1,5 @@
 import java.awt.*;
 
-/**
- *
- * @author hewhofades
- */
 public class Room {
 
     public int worldWidth = 12;

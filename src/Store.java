@@ -1,8 +1,5 @@
 import java.awt.*;
-/**
- *
- * @author hewhofades
- */
+
 public class Store {
     public static int shopWidth = 8;
     public static int buttonSize = 52;
@@ -22,10 +19,10 @@ public class Store {
     }
 
     public void define(){
-        for(int i=0; i<button.length; i++){
+        for(int i = 0; i < button.length; i++){
             button[i]=new Rectangle((Screen.myWidth/2) - ((shopWidth*(buttonSize+cellSpace))/2)+ ((buttonSize+cellSpace)*i) , (Screen.room.block[Screen.room.worldHeight-1][0].y)+Screen.room.blockSize+awayFromRoom, buttonSize, buttonSize);
         }
-        buttonHealth = new Rectangle(Screen.room.block[0][0].x - 1, button[0].y, iconSize, iconSize);
+        buttonHealth = new Rectangle( Screen.room.block[0][0].x - 1, button[0].y, iconSize, iconSize);
         buttonCoins = new Rectangle(Screen.room.block[0][0].x - 1, button[0].y + button[0].height- iconSize , iconSize, iconSize);
     }
 
