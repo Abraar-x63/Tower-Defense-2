@@ -62,7 +62,7 @@ public class Screen extends JPanel implements Runnable{
     @Override
     public void paintComponent(Graphics g){
 
-        if(isFirst) {
+        if(isFirst && health > 0) {
             myWidth = getWidth();
             myHeight = getHeight();
             define();
@@ -76,7 +76,6 @@ public class Screen extends JPanel implements Runnable{
         g.drawLine(room.block[0][room.worldWidth-1].x+room.blockSize, 0, room.block[0][room.worldWidth-1].x+room.blockSize, room.block[room.worldHeight-1][0].y+room.blockSize+1);
         g.drawLine(room.block[0][0].x+room.blockSize, room.block[room.worldHeight-1][0].y+room.blockSize, room.block[0][room.worldWidth-1].x+room.blockSize, room.block[room.worldHeight-1][0].y+room.blockSize);
 
-        store.draw(g); //drawing the store
 
 
 
@@ -85,6 +84,16 @@ public class Screen extends JPanel implements Runnable{
             if (mob.inGame) {
                 mob.draw(g);
             }
+        }
+        store.draw(g); //drawing the store
+
+
+        if (health < 1) {
+            g.setColor(new Color(240,20, 20));
+            g.fillRect(0,0, myWidth,myHeight);
+            g.setColor(new Color(255,255, 255));
+            g.setFont(new Font("Courier New", Font.BOLD, 14));
+            g.drawString("GAME OVER!",10, 10);
         }
 
     }

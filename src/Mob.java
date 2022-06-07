@@ -32,6 +32,17 @@ public class Mob extends Rectangle {
         inGame = true;
     }
 
+    private void deleteMob() {
+
+        inGame = false;
+
+    }
+
+    public void looseHealth() {
+        Screen.health -= 1;
+    }
+
+
     public int walkFrame = 0, walkSpeed =40;
     public void physic() {
         if (walkFrame >= walkSpeed) {
@@ -91,6 +102,11 @@ public class Mob extends Rectangle {
                     } catch (Exception ignored) {}
                 }
 
+                if (Screen.room.block[yC][xC].airID == Value.airCave) {
+                    deleteMob();
+                    looseHealth();
+                }
+
                 hasUpward= false;
                 hasDownward = false;
                 hasRight = false;
@@ -104,6 +120,7 @@ public class Mob extends Rectangle {
         }
 
     }
+
 
     public void draw(Graphics g) {
 
