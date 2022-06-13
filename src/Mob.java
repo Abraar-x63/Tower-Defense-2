@@ -132,10 +132,12 @@ public class Mob extends Rectangle {
 //        Color randomColor = new Color(R, G, B);
 //        g.setColor(randomColor);
 
-        g.setColor(Color.RED);
-        g.fillRect( x, y, width, height);
+          g.drawImage(Screen.tileset_mob[mobID], x, y, width, height, null);
 
-        // g.drawImage(Screen.tileset_mob[mobID], x, y, width, height, null);
+//        g.setColor(Color.RED);
+//        g.fillRect( x, y, width, height);
+
+
     }
 
 }

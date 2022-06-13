@@ -13,7 +13,7 @@ public class Store {
     public static int itemIn = 4;
     public static int heldID = -1;
     public static int[] buttonID = {Value.airTowerLaser, Value.airAir,Value.airAir,Value.airAir,Value.airAir,Value.airAir,Value.airAir,Value.airTowerLaser};
-    public static int[] buttonPrice = {10, 0, 0, 0, 0, 0, 0, 0};
+    public static int[] buttonPrice = {10, 10, 0, 0, 0, 0, 0, 0};
 
     public Rectangle[] button = new Rectangle[shopWidth];
     public Rectangle buttonHealth;
@@ -55,6 +55,11 @@ public class Store {
     public void draw(Graphics g){
         for (int i = 0; i < button.length; i++) {
 
+            if (button[i].contains(Screen.mse)) {
+                g.setColor(new Color(255, 255, 255, 100));
+                g.fillRect(button[i].x, button[i].y, button[i].width, button[i].height);
+            }
+
             g.drawImage(Screen.tileset_res[0], button[i].x, button[i].y, button[i].width, button[i].height, null);
             if (buttonID[i] !=Value.airAir) {
                 g.drawImage(Screen.tileset_air[buttonID[i]], button[i].x + itemIn, button[i].y + itemIn, button[i].width - ((itemIn)*2), button[i].height - ((itemIn)*2), null);
@@ -65,10 +70,7 @@ public class Store {
                 g.drawString("$" + buttonPrice[i], button[i].x + itemIn, button[i].y );
             }
 
-            if (button[i].contains(Screen.mse)) {
-                g.setColor(new Color(255, 255, 255, 50));
-                g.fillRect(button[i].x, button[i].y, button[i].width, button[i].height);
-            }
+
         }
 
         g.drawImage(Screen.tileset_res[1], buttonHealth.x, buttonHealth.y, buttonHealth.width, buttonHealth.height, null);
