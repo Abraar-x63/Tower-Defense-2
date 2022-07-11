@@ -15,6 +15,7 @@ public class Screen extends JPanel implements Runnable{
     public static int myWidth, myHeight;
     public static int coinage = 10, health = 100;
     public static boolean isFirst = true;
+    public static boolean isDebug = true;
     public static Point mse = new Point(0, 0);
     public static Room room;
     public static Save save;
@@ -85,6 +86,7 @@ public class Screen extends JPanel implements Runnable{
                 mob.draw(g);
             }
         }
+
         store.draw(g); //drawing the store
 
 
