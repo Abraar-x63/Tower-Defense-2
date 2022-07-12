@@ -14,8 +14,11 @@ public class Screen extends JPanel implements Runnable{
 
     public static int myWidth, myHeight;
     public static int coinage = 10, health = 100;
+    public static int killed = 0, killsToWin = 0, level = 1, maxLevel = 3;
+    public static int winTime = 4000, winFrame = 0;
     public static boolean isFirst = true;
-    public static boolean isDebug = true;
+    public static boolean isDebug = false;
+    public static boolean isWin = false;
     public static Point mse = new Point(0, 0);
     public static Room room;
     public static Save save;
@@ -30,11 +33,22 @@ public class Screen extends JPanel implements Runnable{
         thread.start();
     }
 
+    public static void hasWin(){
+        if(killed == killsToWin){
+            isWin = true;
+            killed = 0;
+            coinage = 0;
+        }
+    }
+
     public void define() {
 
         room = new Room();
         save = new Save();
         store = new Store();
+
+        coinage = 10;
+        health = 100;
 
         for(int i=0; i<tileset_ground.length; i++) {
             tileset_ground[i] = new ImageIcon("res/tileset_ground.png").getImage();
@@ -51,7 +65,7 @@ public class Screen extends JPanel implements Runnable{
         tileset_res[2] = new ImageIcon("res/coin.png").getImage();
         tileset_mob[0] = new ImageIcon("res/mob.png").getImage();
 
-        save.loadSave(new File("save/ulxava.txt"));
+        save.loadSave(new File("save/mission" + level + ".ulixava"));
 
         for (int i = 0; i < mobs.length; i++) {
             mobs[i] = new Mob();
@@ -97,6 +111,18 @@ public class Screen extends JPanel implements Runnable{
             g.setFont(new Font("Courier New", Font.BOLD, 14));
             g.drawString("GAME OVER!",10, 10);
         }
+        if(isWin){
+            g.setColor(new Color(255, 255, 255));
+            g.fillRect(0, 0, getWidth(), getHeight());
+            g.setColor(new Color(0,0, 0));
+            g.setFont(new Font("Courier New", Font.BOLD, 14));
+            if(level == maxLevel){
+                g.drawString("You won all the level! You are the KING now....",10, 10);
+            }
+            else{
+                g.drawString("YOu won! COngratulations. Please wait for the next level....",10, 10);
+            }
+        }
 
     }
 
@@ -122,7 +148,7 @@ public class Screen extends JPanel implements Runnable{
         //noinspection InfiniteLoopStatement
         while(true){
 
-            if(!isFirst){
+            if(!isFirst && health > 0 && !isWin){
                 room.physic();
                 mobSpawner();
 
@@ -132,6 +158,24 @@ public class Screen extends JPanel implements Runnable{
                     }
                 }
 
+            }
+            else{
+                if(isWin){
+                    if(winFrame >= winTime){
+                       if(level == maxLevel){
+                           System.exit(0);
+                       }
+                       else{
+                           level += 1;
+                           define();
+                           isWin = false;
+                       }
+                        winFrame = 0;
+                    }
+                    else{
+                        winFrame += 1;
+                    }
+                }
             }
 
             repaint();

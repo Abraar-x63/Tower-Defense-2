@@ -4,6 +4,8 @@ import java.util.Random;
 public class Mob extends Rectangle {
 
     public int xC,yC;
+    public int health;
+    public int healthSpace = 3, healthHeight = 6;
     public int mobSize = 52;
     public int mobWalk = 0;
     public int upward = 0, downward = 1, right = 2, left = 3;
@@ -29,12 +31,18 @@ public class Mob extends Rectangle {
         }
         // setBounds(10, 10,100, 100);
         this.mobID = mobID;
+        this.health = mobSize;
+
         inGame = true;
     }
 
     private void deleteMob() {
 
         inGame = false;
+        direction = right;
+        mobWalk = 0;
+
+        Screen.room.block[0][0].getMoney(mobID);
 
     }
 
@@ -121,6 +129,27 @@ public class Mob extends Rectangle {
 
     }
 
+    public void loseHealth(int amo){
+        health -= amo;
+
+        checkDeath();
+    }
+
+    public void checkDeath(){
+        if(health == 0){
+            deleteMob();
+        }
+    }
+
+    public boolean isDead(){
+        if(inGame){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
 
     public void draw(Graphics g) {
 
@@ -133,6 +162,16 @@ public class Mob extends Rectangle {
 //        g.setColor(randomColor);
 
           g.drawImage(Screen.tileset_mob[mobID], x, y, width, height, null);
+
+          //healthbar
+          g.setColor(new Color(100, 50, 50));
+          g.fillRect(x, y - (healthSpace + healthHeight), width, healthHeight);
+
+          g.setColor(new Color(50, 100, 50));
+          g.fillRect(x, y - (healthSpace + healthHeight), health, healthHeight);
+
+          g.setColor(new Color(0, 0, 0));
+          g.drawRect(x, y - (healthSpace + healthHeight), health - 1, healthHeight - 1);
 
 //        g.setColor(Color.RED);
 //        g.fillRect( x, y, width, height);

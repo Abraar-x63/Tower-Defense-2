@@ -10,4 +10,6 @@ public class Value {
 
     public static int mobAir = -1;
     public static int mobGreeny = 0;
+
+    public static int[] deathReward = {5};
 }

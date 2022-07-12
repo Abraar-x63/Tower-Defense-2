@@ -5,7 +5,8 @@ public class Block extends Rectangle {
     public int towerSquareSize = 130;
     public int groundID;
     public int airID;
-    public int shotMob = 0;
+    public int loseTime = 100, loseFrame = 0;
+    public int shotMob = -1;
     public boolean shooting = false;
 
     public Block(int x, int y, int width, int height, int groundID, int airID){
@@ -24,7 +25,50 @@ public class Block extends Rectangle {
     }
 
     public void physic(){
+        if(shotMob != -1 && towerSquare.intersects(Screen.mobs[shotMob])){
+            shooting = true;
+        }
+        else{
+            shooting = false;
+        }
 
+        if(!shooting){
+            if(airID == Value.airTowerLaser){
+                for(int i=0; i<Screen.mobs.length; i++){
+                    if(Screen.mobs[i].inGame){
+                        if(towerSquare.intersects(Screen.mobs[i])){
+                            shooting = true;
+                            shotMob = i;
+                        }
+                    }
+                }
+            }
+        }
+
+        if(shooting){
+            if(loseFrame >= loseTime){
+                Screen.mobs[shotMob].loseHealth(1);
+
+                loseFrame = 0;
+            }
+            else{
+                loseFrame += 1;
+            }
+
+            if(Screen.mobs[shotMob].isDead()){
+                shooting = false;
+                shotMob = -1;
+
+                Screen.killed += 1;
+
+                Screen.hasWin();
+            }
+
+        }
+    }
+
+    public void getMoney(int mobID){
+        Screen.coinage += Value.deathReward[mobID];
     }
 
     public void fight(Graphics g){
@@ -32,6 +76,10 @@ public class Block extends Rectangle {
             if(airID == Value.airTowerLaser){
                 g.drawRect(towerSquare.x, towerSquare.y, towerSquare.width, towerSquare.height);
             }
+        }
+        if(shooting){
+            g.setColor(new Color(255, 255, 0));
+            g.drawLine(x + (width/2), y + (height/2), Screen.mobs[shotMob].x + (Screen.mobs[shotMob].width/2), Screen.mobs[shotMob].y + (Screen.mobs[shotMob].height/2));
         }
     }
 }
