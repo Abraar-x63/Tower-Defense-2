@@ -23,23 +23,23 @@ public class Room {
     }
 
     public void physic(){
-        for(int y=0; y<block.length; y++){
-            for(int x=0; x<block[0].length; x++){
-                block[y][x].physic();
+        for (Block[] blocks : block) {
+            for (int x = 0; x < block[0].length; x++) {
+                blocks[x].physic();
             }
         }
     }
 
     public void draw(Graphics g){
-        for (int y=0; y<block.length; y++ ){
+        for (Block[] blocks : block) {
             for (int x = 0; x < block[0].length; x++) {
-                block[y][x].draw(g);
+                blocks[x].draw(g);
             }
         }
 
-        for (int y=0; y<block.length; y++ ){
+        for (Block[] blocks : block) {
             for (int x = 0; x < block[0].length; x++) {
-                block[y][x].fight(g);
+                blocks[x].fight(g);
             }
         }
     }

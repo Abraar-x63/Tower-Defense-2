@@ -145,7 +145,7 @@ public class Screen extends JPanel implements Runnable{
 
 
     public void run(){
-        //noinspection InfiniteLoopStatement
+
         while(true){
 
             if(!isFirst && health > 0 && !isWin){
