@@ -25,12 +25,7 @@ public class Block extends Rectangle {
     }
 
     public void physic(){
-        if(shotMob != -1 && towerSquare.intersects(Screen.mobs[shotMob])){
-            shooting = true;
-        }
-        else{
-            shooting = false;
-        }
+        shooting = shotMob != -1 && towerSquare.intersects(Screen.mobs[shotMob]);
 
         if(!shooting){
             if(airID == Value.airTowerLaser){

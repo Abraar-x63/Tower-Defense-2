@@ -142,28 +142,14 @@ public class Mob extends Rectangle {
     }
 
     public boolean isDead(){
-        if(inGame){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return !inGame;
     }
 
 
     public void draw(Graphics g) {
-
-//        Random rand = new Random();
-//        float R = rand.nextFloat();
-//        float G = rand.nextFloat();
-//        float B = rand.nextFloat();
-//
-//        Color randomColor = new Color(R, G, B);
-//        g.setColor(randomColor);
-
           g.drawImage(Screen.tileset_mob[mobID], x, y, width, height, null);
 
-          //healthbar
+          // Health Bar
           g.setColor(new Color(100, 50, 50));
           g.fillRect(x, y - (healthSpace + healthHeight), width, healthHeight);
 
@@ -172,10 +158,6 @@ public class Mob extends Rectangle {
 
           g.setColor(new Color(0, 0, 0));
           g.drawRect(x, y - (healthSpace + healthHeight), health - 1, healthHeight - 1);
-
-//        g.setColor(Color.RED);
-//        g.fillRect( x, y, width, height);
-
 
     }
 
