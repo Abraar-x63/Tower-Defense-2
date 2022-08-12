@@ -69,7 +69,7 @@ public class Screen extends JPanel implements Runnable{
 
         for (int i = 0; i < mobs.length; i++) {
             mobs[i] = new Mob();
-            mobs[i].spawnMob(0);
+            //mobs[i].spawnMob(0);
         }
 
     }
