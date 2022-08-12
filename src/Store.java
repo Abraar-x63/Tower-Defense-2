@@ -14,7 +14,7 @@ public class Store {
     public static int heldID = -1;
     public static int realID = -1;
     public static int[] buttonID = {Value.airTowerLaser, Value.airAir,Value.airAir,Value.airAir,Value.airAir,Value.airAir,Value.airAir,Value.airTowerLaser};
-    public static int[] buttonPrice = {10, 10, 0, 0, 0, 0, 0, 0};
+    public static int[] buttonPrice = {5, 10, 0, 0, 0, 0, 0, 0};
 
     public Rectangle[] button = new Rectangle[shopWidth];
     public Rectangle buttonHealth;
@@ -48,7 +48,7 @@ public class Store {
                     for(int y=0; y< Screen.room.block.length; y++){
                         for(int x=0; x< Screen.room.block.length; x++){
                             if(Screen.room.block[y][x].contains(Screen.mse)){
-                                if(Screen.room.block[y][x].groundID != Value.groundRoad && Screen.room.block[y][x].airID != Value.airAir){
+                                if(Screen.room.block[y][x].groundID != Value.groundRoad && Screen.room.block[y][x].airID == Value.airAir){
                                     Screen.room.block[y][x].airID = heldID;
                                     Screen.coinage -= buttonPrice[realID];
                                 }
