@@ -181,6 +181,7 @@ public class Screen extends JPanel implements Runnable{
             repaint();
 
             try{
+                //noinspection BusyWait
                 Thread.sleep(1);
             } catch(Exception ignored){}
         }

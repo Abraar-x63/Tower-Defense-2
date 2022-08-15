@@ -1,12 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Frame extends JFrame{
+public class CoverScreen extends JFrame {
 
     public static String title = "TD by The Sentinels";
     public static Dimension size = new Dimension(725, 550);
 
-    public Frame(){
+    public CoverScreen(){
         setTitle(title);
         setSize(size);
         setResizable(false);
@@ -19,13 +19,19 @@ public class Frame extends JFrame{
     public void init(){
         setLayout(new GridLayout(1,1,0,0));
 
-        Screen screen = new Screen(this);
-        add(screen);
+        CoverPanel coverPanel = new CoverPanel(this);
+        add(coverPanel);
 
         setVisible(true);
     }
 
-//    public static void main(String[] args) {
-//        Frame frame = new Frame();
-//    }
+    public static void main(String[] args) {
+        CoverScreen coverScreen = new CoverScreen();
+        CoverPanel cp = new CoverPanel(coverScreen);
+        cp.showCover();
+    }
+
+    public static void startGame() {
+        new Frame();
+    }
 }
