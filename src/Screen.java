@@ -68,7 +68,7 @@ public class Screen extends JPanel implements Runnable{
         tileset_res[2] = new ImageIcon("res/coin.png").getImage();
         tileset_mob[0] = new ImageIcon("res/mob.png").getImage();
 
-        save.loadSave(new File("save/mission" + level + ".ulixava"));
+        save.loadSave(new File("save/mission" + level + ".apff"));
 
         for (int i = 0; i < mobs.length; i++) {
             mobs[i] = new Mob();
