@@ -47,7 +47,7 @@ public class Mob extends Rectangle {
     }
 
     public void looseHealth() {
-        Screen.health -= 1;
+        Screen.health -= 10;
     }
 
 

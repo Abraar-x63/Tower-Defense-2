@@ -31,6 +31,7 @@ public class Screen extends JPanel implements Runnable{
         frame.addMouseMotionListener(new KeyHandle());
 
         thread.start();
+
     }
 
     public static void hasWin(){
@@ -39,6 +40,11 @@ public class Screen extends JPanel implements Runnable{
             killed = 0;
             coinage = 0;
         }
+//        Sound s = new Sound();
+//        s.play();
+        Music m = new Music();
+        m.setFile("res/Sounds/death.wav");
+        m.play();
     }
 
     public void define() {
@@ -63,13 +69,13 @@ public class Screen extends JPanel implements Runnable{
         tileset_res[0] = new ImageIcon("res/cell.png").getImage();
         tileset_res[1] = new ImageIcon("res/heart.png").getImage();
         tileset_res[2] = new ImageIcon("res/coin.png").getImage();
-        tileset_mob[0] = new ImageIcon("res/mob.png").getImage();
+        tileset_mob[0] = new ImageIcon("res/mob.gif").getImage();
 
-        save.loadSave(new File("save/mission" + level + ".ulixava"));
+        save.loadSave(new File("save/mission" + level + ".apff"));
 
         for (int i = 0; i < mobs.length; i++) {
             mobs[i] = new Mob();
-            mobs[i].spawnMob(0);
+            //mobs[i].spawnMob(0);
         }
 
     }
@@ -112,15 +118,16 @@ public class Screen extends JPanel implements Runnable{
             g.drawString("GAME OVER!",10, 10);
         }
         if(isWin){
-            g.setColor(new Color(255, 255, 255));
+            g.setColor(new Color(200, 50, 200));
             g.fillRect(0, 0, getWidth(), getHeight());
             g.setColor(new Color(0,0, 0));
-            g.setFont(new Font("Courier New", Font.BOLD, 14));
+            g.setFont(new Font("Courier New", Font.BOLD, 18));
             if(level == maxLevel){
-                g.drawString("You won all the level! You are the KING now....",10, 10);
+                g.drawString("You won all the level! You are the KING now....",50, 220);
             }
             else{
-                g.drawString("YOu won! COngratulations. Please wait for the next level....",10, 10);
+                g.drawString("YOU WON!",270, 210);
+                g.drawString("Congratulations. Please wait for the next level....",70, 250);
             }
         }
 
@@ -145,6 +152,7 @@ public class Screen extends JPanel implements Runnable{
 
 
     public void run(){
+
 
         while(true){
 
@@ -181,6 +189,7 @@ public class Screen extends JPanel implements Runnable{
             repaint();
 
             try{
+                //noinspection BusyWait
                 Thread.sleep(1);
             } catch(Exception ignored){}
         }

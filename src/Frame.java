@@ -25,7 +25,7 @@ public class Frame extends JFrame{
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        Frame frame = new Frame();
-    }
+//    public static void main(String[] args) {
+//        Frame frame = new Frame();
+//    }
 }
