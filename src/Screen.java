@@ -40,8 +40,11 @@ public class Screen extends JPanel implements Runnable{
             killed = 0;
             coinage = 0;
         }
-        Sound s = new Sound();
-        s.play();
+//        Sound s = new Sound();
+//        s.play();
+        Music m = new Music();
+        m.setFile("res/Sounds/death.wav");
+        m.play();
     }
 
     public void define() {
