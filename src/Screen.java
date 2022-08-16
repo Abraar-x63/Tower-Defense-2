@@ -31,6 +31,7 @@ public class Screen extends JPanel implements Runnable{
         frame.addMouseMotionListener(new KeyHandle());
 
         thread.start();
+
     }
 
     public static void hasWin(){
@@ -39,6 +40,8 @@ public class Screen extends JPanel implements Runnable{
             killed = 0;
             coinage = 0;
         }
+        Sound s = new Sound();
+        s.play();
     }
 
     public void define() {
@@ -146,6 +149,7 @@ public class Screen extends JPanel implements Runnable{
 
 
     public void run(){
+
 
         while(true){
 
